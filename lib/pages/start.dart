@@ -40,19 +40,6 @@ class _startState extends State<start> {
                 );
               },
             ),
-            Center(
-              child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => pictureRound(count: 0)),
-                      (Route<dynamic> route) => false,
-                    );
-                  },
-                  child: Text("click"),
-                  color: Colors.red),
-            )
           ],
         );
       },

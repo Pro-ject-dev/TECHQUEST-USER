@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,9 @@ class _mcqRoundState extends State<mcqRound> {
                   ))
                 : Stack(
                     children: [
-                      Image.asset(bgimg_Mcq,
+                      CachedNetworkImage(
+                          imageUrl:
+                              "https://firebasestorage.googleapis.com/v0/b/mapview-aafa3.appspot.com/o/BG.jpg?alt=media&token=f9b13d09-0ef3-49bf-ac0d-9b25c8d9ed0d",
                           width: width(context),
                           height: height(context),
                           fit: BoxFit.cover),
@@ -218,8 +221,8 @@ class _mcqRoundState extends State<mcqRound> {
                                       color: Color.fromARGB(255, 0, 134, 0)
                                           .withOpacity(0.8),
                                       onPressed: () {
-                                        if (r1_answer != null) {
-                                          if (widget.count <
+                                        if (r1_answer != "NO") {
+                                          if (widget.count <=
                                               round1.length - 1) {
                                             r1_time = duration.getTime();
                                             r1_question_id =
@@ -245,14 +248,12 @@ class _mcqRoundState extends State<mcqRound> {
                                                   (route) => false);
                                             });
                                           } else {
-                                            R1_performance().whenComplete(() {
-                                              Navigator.pushAndRemoveUntil(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: ((context) =>
-                                                          completed())),
-                                                  (route) => false);
-                                            });
+                                            Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: ((context) =>
+                                                        completed())),
+                                                (route) => false);
                                           }
                                         }
                                       },

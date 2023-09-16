@@ -13,9 +13,9 @@ Future register() async {
     body: ({"teamname": team_name.toString().toUpperCase()}),
   );
   if (response.statusCode == 200) {
-    return response.statusCode;
+    return response.body;
   } else {
-    return response.statusCode;
+    return response.body;
   }
 }
 
@@ -25,7 +25,6 @@ Future get_status() async {
     body: ({"teamname": team_name}),
   );
   if (response.statusCode == 200) {
-    print(json.decode(response.body));
     status = json.decode(response.body);
   } else {
     print('Request failed with status: ${response.statusCode}');
@@ -38,7 +37,6 @@ Future get_r1_question() async {
   );
   if (response.statusCode == 200) {
     round1 = json.decode(response.body);
-    print(json.decode(response.body));
   } else {
     print('Request failed with status: ${response.statusCode}');
   }
@@ -78,8 +76,6 @@ Future R1_performance() async {
     }),
   );
   if (response.statusCode == 200) {
-    print(response.body);
-    print("success");
   } else {
     print('Request failed with status: ${response.statusCode}');
   }
@@ -96,8 +92,6 @@ Future R2_performance() async {
     }),
   );
   if (response.statusCode == 200) {
-    print(response.body);
-    print("success");
   } else {
     print('Request failed with status: ${response.statusCode}');
   }
@@ -114,8 +108,6 @@ Future R3_performance() async {
     }),
   );
   if (response.statusCode == 200) {
-    print(response.body);
-    print("success");
   } else {
     print('Request failed with status: ${response.statusCode}');
   }
@@ -140,8 +132,6 @@ Future get_r3status(question_id) async {
   );
   if (response.statusCode == 200) {
     statusr3 = json.decode(response.body);
-    print("sdhsd");
-    print(statusr3);
   } else {
     print('Request failed with status: ${response.statusCode}');
   }
@@ -154,7 +144,6 @@ Future<void> wrongAnswer() async {
       body: ({"id": (performance_id + 1).toString()}),
     );
     if (response.statusCode == 200) {
-      print(response.body);
     } else {
       print('Request failed with status: ${response.statusCode}');
     }
@@ -170,7 +159,6 @@ Future<void> correctanswer() async {
       body: ({"id": performance_id.toString()}),
     );
     if (response.statusCode == 200) {
-      print(response.body);
     } else {
       print('Request failed with status: ${response.statusCode}');
     }
@@ -185,7 +173,28 @@ Future getquestionNo() async {
   );
   if (response.statusCode == 200) {
     Qno = json.decode(response.body);
-    print(Qno);
+  } else {
+    print('Request failed with status: ${response.statusCode}');
+  }
+}
+
+Future getr3Scoreboard() async {
+  final response = await http.get(
+    Uri.parse('$api/Scorer3.php'),
+  );
+  if (response.statusCode == 200) {
+    scorer3 = json.decode(response.body);
+  } else {
+    print('Request failed with status: ${response.statusCode}');
+  }
+}
+
+Future getround() async {
+  final response = await http.get(
+    Uri.parse('$api/getRound.php'),
+  );
+  if (response.statusCode == 200) {
+    R = json.decode(response.body);
   } else {
     print('Request failed with status: ${response.statusCode}');
   }

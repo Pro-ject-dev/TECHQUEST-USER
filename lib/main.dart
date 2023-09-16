@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:MZQUIZARDRY/api_calls.dart';
-import 'package:MZQUIZARDRY/pages/test.dart';
+import 'package:MZQUIZARDRY/pages/instructions.dart';
 import 'package:flutter/material.dart';
 import 'package:MZQUIZARDRY/pages/homepage.dart';
 import 'package:MZQUIZARDRY/pages/login.dart';

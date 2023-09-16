@@ -8,7 +8,8 @@ import 'package:MZQUIZARDRY/constants.dart';
 import 'package:MZQUIZARDRY/pages/homepage.dart';
 
 class wait extends StatefulWidget {
-  const wait({super.key});
+  final content;
+  const wait({super.key, this.content});
 
   @override
   State<wait> createState() => _waitState();
@@ -20,11 +21,15 @@ class _waitState extends State<wait> {
 
   @override
   void initState() {
-    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-      setState(() {
-        get_status();
-      });
-    });
+    enter
+        ? {
+            _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+              setState(() {
+                get_status();
+              });
+            })
+          }
+        : null;
     super.initState();
   }
 
@@ -35,20 +40,21 @@ class _waitState extends State<wait> {
             stream: _streamController.stream,
             builder: (context, snapshot) {
               if (status.length != 0) {
-                if (status[status.length - 1]["status"] == "1") {
+                if (status[status.length - 1]["status"] == 1) {
                   _timer.cancel();
                   _streamController.close();
                   return homepage();
                 } else {
                   return Center(
-                    child: Text("Please Wait for confirmation.....",
+                    child: Text(widget.content,
                         style:
                             GoogleFonts.aleo(color: Colors.red, fontSize: 24)),
                   );
                 }
               }
               return Center(
-                child: CircularProgressIndicator(color: Colors.red),
+                child: Text(widget.content,
+                    style: GoogleFonts.aleo(color: Colors.red, fontSize: 18)),
               );
             }));
   }

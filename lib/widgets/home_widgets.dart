@@ -32,30 +32,33 @@ class rounds extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if (round == "MIND MAZE") {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => mcqRound(count: 0)),
-              (Route<dynamic> route) => false,
-            );
+            page = 0;
+            currentround == "R1"
+                ? Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => instructions()),
+                    (Route<dynamic> route) => false,
+                  )
+                : null;
           } else if (round == "MINDSPARK PARADOX") {
             print("picture");
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => start()),
-              (Route<dynamic> route) => false,
-            );
+            page = 1;
+            currentround == "R2"
+                ? Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => instructions()),
+                    (Route<dynamic> route) => false,
+                  )
+                : null;
           } else if (round == "RAPID FIRE") {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => rapidRound(count: 0)),
-              (Route<dynamic> route) => false,
-            );
-          } else if (round == "INSTRUCTIONS") {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => instructions()),
-              (Route<dynamic> route) => false,
-            );
+            page = 2;
+            currentround == "R3"
+                ? Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => instructions()),
+                    (Route<dynamic> route) => false,
+                  )
+                : null;
           }
         },
         child: Container(
